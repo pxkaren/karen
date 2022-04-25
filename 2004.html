@@ -1,0 +1,67 @@
+<canvas 
+id = "meuCanvas" width = "800" height = "600" style = "border: 5px solid;">
+</canvas>
+<script src = "js/Bola.js"></script>
+<script src = "js/Bloco.js"></script>
+<script src = "js/PowerUp.js"></script>
+<script src = "js/Quadrado.js"></script>
+<script src = "js/Jogador.js"></script>
+
+<script>
+var canvas = document.getElementById("meuCanvas");
+var contexto = canvas.getContext("2d"); 
+
+var bola = new Bola("images/bola.png", 100, 100);
+var bloco = new Bloco("images/bloco.png", 20, 20);
+var powerup = new PowerUp("images/power_up.png");
+//var quadrado = new Quadrado("images/quadrado.jpg", 300, 400);
+var jogador = new Jogador("images/jogador.jpg", 350, 550);
+
+document.addEventListener("keydown", TeclaPressionada);
+document.addEventListener("keyup", TeclaSolta);
+
+//Definição
+function Loop()
+{
+	AtualizarLogicamente();
+	AtualizarGraficamente();
+    
+	requestAnimationFrame(Loop);
+}
+
+function AtualizarLogicamente()
+{
+	bola.Atualizar();
+	//quadrado.Atualizar();
+	jogador.Atualizar();
+}
+
+function AtualizarGraficamente()
+{
+	contexto.clearRect(0, 0, 800, 600);
+
+	bola.Desenhar();
+	bloco.Desenhar();
+	powerup.Desenhar();
+	//quadrado.Desenhar();
+	jogador.Desenhar();
+}
+
+function TeclaPressionada(e) 
+{ 	
+	jogador.GerenciaTeclado(e, true); 
+}
+
+function TeclaSolta(e) 
+{ 	
+	jogador.GerenciaTeclado(e, false); 
+}
+
+//Execução
+Loop();
+
+</script>
+
+
+2004 é sinistraaaa!!!!
+2004 vai mandar mto bem esse ano!!!!
